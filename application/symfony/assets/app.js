@@ -1,5 +1,1 @@
-import './styles/app.scss';
-
-import './bootstrap';
-
-require('bootstrap')
+import './styles/global.scss';

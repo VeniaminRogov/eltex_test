@@ -3,3 +3,19 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+orders:
+    path: /orders
+    controller: App\Controller\OrderController::show
+
+orders_create:
+    path: /orders/create
+    controller: App\Controller\OrderController::create
+
+orders_edit:
+    path: /orders/edit/{order?}
+    controller: App\Controller\OrderController::edit
+
+orders_delete:
+    path: /order/{order}
+    controller: App\Controller\OrderController::remove

@@ -1,0 +1,18 @@
+App\Entity\Order:
+  properties:
+    email:
+      - Length:
+          min: 2
+          max: 35
+    name:
+      - NotBlank:
+          message: 'Name field is empty'
+      - Length:
+          min: 2
+          max: 25
+    theme:
+      - NotBlank:
+          message: 'Theme field is empty'
+      - Length:
+          min: 2
+          max: 25

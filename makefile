@@ -20,7 +20,7 @@ build:
 	@$(DOCKER_COMPOSE) build --pull --no-cache
 
 up:
-	@$(DOCKER_COMPOSE) up --detach
+	@$(DOCKER_COMPOSE) up
 
 down:
 	@$(DOCKER_COMPOSE) down --remove-orphans
