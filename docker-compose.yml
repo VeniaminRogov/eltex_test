@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+    php-fpm:
+        build:
+            context: .
+            dockerfile: ./docker/development/php-fpm/build/Dockerfile
+        volumes:
+            - ./application/symfony:/var/www/application/symfony
+        depends_on:
+            - mysql
+
+    nginx:
+        build:
+            context: .
+            dockerfile: ./docker/development/nginx/build/Dockerfile
+        volumes:
+            - ./application/symfony/public:/var/www/application/symfony/public:ro
+            - ./docker/development/nginx/etc/conf.d:/etc/nginx/conf.d:ro
+        ports:
+            - '8000:80'
+        depends_on:
+            - node
+
+    mysql:
+        image: mysql:8
+        ports:
+            - '4306:3306'
+        volumes:
+            - ./mysql:/var/lib/mysql
+        command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    node:
+        build:
+            context: .
+            dockerfile: ./docker/development/node/build/Dockerfile
+        volumes:
+            - ./application/symfony:/var/www/application/symfony
+        depends_on:
+            - php-fpm
+
+volumes:
+    database: ~
+    var: ~

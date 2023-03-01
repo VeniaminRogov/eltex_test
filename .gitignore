@@ -1,0 +1,12 @@
+# system files
+.DS_Store
+
+# IDE
+/.idea/
+
+# dotenv
+/.env.local
+
+# docker compose
+/docker-compose.override.yml
+/mysql
