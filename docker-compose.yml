@@ -3,6 +3,7 @@ version: '3.9'
 services:
     php-fpm:
         build:
+            network: host
             context: .
             dockerfile: ./docker/development/php-fpm/build/Dockerfile
         volumes:
@@ -12,6 +13,7 @@ services:
 
     nginx:
         build:
+            network: host
             context: .
             dockerfile: ./docker/development/nginx/build/Dockerfile
         volumes:
@@ -35,6 +37,7 @@ services:
 
     node:
         build:
+            network: host
             context: .
             dockerfile: ./docker/development/node/build/Dockerfile
         volumes:
